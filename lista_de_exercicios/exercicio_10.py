@@ -1,0 +1,6 @@
+#Salariovendedor = R$ 500 + 50*quuantidade de carros vendidos +((0.5*valor da venda)/100)
+vendedor = input("vendedor: ")
+quantCarros = int(input("Quantidade de carros vendidos: "))
+valorVenda = float(input("Valor de venda"))
+salariovendedor = 500 + 50*quantCarros +((0.5*valorVenda)/100)
+print("Funcionário: %s Salário: %6.2f" %(vendedor,salariovendedor))

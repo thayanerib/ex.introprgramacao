@@ -1,0 +1,10 @@
+#sistema de equações lineares, resolução:
+a = int(input("Entre com um número:"))
+b = int(input("Entre com um número:"))
+c = int(input("Entre com um número:"))
+d = int(input("Entre com um número:"))
+e = int(input("Entre com um número:"))
+f = int(input("Entre com um número:"))
+x = (ce - bf)/(ae - bd)
+y = (af - cd)/(ae - bd)
+print(" x = %d y = %d" % (x,y))

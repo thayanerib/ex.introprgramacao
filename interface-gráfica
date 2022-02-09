@@ -1,0 +1,103 @@
+from tkinter import *
+import joblib
+
+#função para amarzenar dados de entrada em lista aspectos
+def pred_resistencia():
+	aspectos = [
+		float(cimento.get()),
+		float(escoria.get()),
+		float(cinzasvolantes.get()),
+		float(agua.get()),
+		float(splastificante.get()),
+		float(agrosso.get()),
+		float(afino.get()),
+		float(idade.get()),
+	]
+	
+	result = model.predict([aspectos])
+	print(f'Resultado = {result[0]}')
+	lb = Label(janela, text="                  ")
+	lb = Label(janela, fg = "#009688", text=f"Resultado = {round(result[0],3)} MPa")
+	lb.place(x=190, y=380)
+	limpar()    
+
+
+#função para limpar entradas após botão pressionado
+def limpar():
+	# cimento
+	cimento.delete(0, END)
+	cimento.insert(0, "")
+
+	# escoria
+	escoria.delete(0, END)
+	escoria.insert(0, "")
+
+	#cinzasvolantes
+	cinzasvolantes.delete(0, END)
+	cinzasvolantes.insert(0, "")
+
+	#agua
+	agua.delete(0, END)
+	agua.insert(0, "")
+
+	#splastificante
+	splastificante.delete(0, END)
+	splastificante.insert(0, "")
+
+	#agrosso
+	agrosso.delete(0, END)
+	agrosso.insert(0, "")
+
+	#afino
+	afino.delete(0, END)
+	afino.insert(0, "")
+
+	#idade
+	idade.delete(0, END)
+	idade.insert(0, "")
+	
+
+
+#definindo conteúdo de janela
+janela = Tk()
+Label(janela, text="Insira os dados de dosagem*. ", bg='#009688', foreground = "#FFFFFF").place(x=15, y=60)
+Label(janela, text="Cimento(kg/m³):", bg='#009688', foreground = "#FFFFFF").place(x=45, y=100)
+Label(janela, text="Escoria(kg/m³):", bg='#009688', foreground = "#FFFFFF").place(x=45, y=130)
+Label(janela, text="Cinzas Volantes(kg/m³):", bg='#009688', foreground = "#FFFFFF").place(x=20, y=160)
+Label(janela, text="Água(kg/m³):", bg='#009688', foreground = "#FFFFFF").place(x=50, y=190)
+Label(janela, text="Superplastificante(kg/m³):", bg='#009688', foreground = "#FFFFFF").place(x=8, y=220)
+Label(janela, text="Agregado grosso(kg/m³):", bg='#009688', foreground = "#FFFFFF").place(x=15, y=250)
+Label(janela, text="Agregado fino(kg/m³):", bg='#009688', foreground = "#FFFFFF").place(x=15, y=280)
+Label(janela, text="Idade(dias):", bg='#009688', foreground = "#FFFFFF").place(x=45, y=310)
+
+
+janela.title("Previsor de Resistência à Compressão") #titulo da janela
+model = joblib.load('concrete.pkl', 'r')   #importando modelo
+
+
+#definindo Entry
+cimento = Entry(janela)
+cimento.place(x=190, y=100)
+escoria = Entry(janela)
+escoria.place(x=190, y=130)
+cinzasvolantes = Entry(janela)
+cinzasvolantes.place(x=190, y=160)
+agua = Entry(janela)
+agua.place(x=190, y=190)
+splastificante = Entry(janela)
+splastificante.place(x=190, y=220)
+agrosso = Entry(janela)
+agrosso.place(x=190, y=250)
+afino = Entry(janela)
+afino.place(x=190, y=280)
+idade = Entry(janela)
+idade.place(x=190, y=310)
+bt = Button(janela, text = "Calcular", width=20, command= pred_resistencia, fg = "#009688")
+bt.place(x=100, y=340)
+
+
+
+#características da janela
+janela.geometry("400x600")
+janela.configure(background="#009688")
+janela.mainloop()
